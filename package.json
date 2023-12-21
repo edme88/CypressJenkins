@@ -4,7 +4,8 @@
   "description": "Proyecto de prueba para cypress con jenkisn",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run --e2e --browser chrome"
+    "test": "npx cypress run --e2e --browser chrome",
+    "generate:report": "node reportTxt.js"
   },
   "repository": {
     "type": "git",
