@@ -9,13 +9,27 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '18.16.0'
+jobs:
+- job: Install Node
   displayName: 'Install Node.js'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.16.0'
+  
 
-- script: |
-    npm ci
-    npm run test
-  displayName: 'npm ci and run test'
+- job: RunNpmCi
+  displayName: 'npm ci'
+  dependsOn: InstallNode
+  steps:
+  - script: |
+      npm ci
+    displayName: 'npm ci'
+
+- job: RunTest
+  displayName: 'npm run test'
+  dependsOn: InstallNode
+  steps:
+  - script: |
+      npm run test
+    displayName: 'npm run test'
