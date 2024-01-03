@@ -28,7 +28,7 @@ jobs:
 
 - job: RunTest
   displayName: 'npm run test'
-  dependsOn: InstallNode
+  dependsOn: RunNpmCi
   steps:
   - script: |
       npm run test
