@@ -16,8 +16,9 @@ parameters:
 trigger:
 - none
 
-pool:
-  vmImage: ${{ parameters.image }}
+variables:
+- name: vmImage
+  value: ${{ parameters.image }}
 
 jobs:
 - job: InstallNode
