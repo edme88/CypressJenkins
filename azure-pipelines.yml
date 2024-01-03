@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-- job: Install Node
+- job: InstallNode
   displayName: 'Install Node.js'
   steps:
   - task: NodeTool@0
