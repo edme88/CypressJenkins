@@ -7,21 +7,30 @@ trigger:
 - none
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '18.16.0'
+jobs:
+- job: InstallNode
   displayName: 'Install Node.js'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.16.0'
 
-- script: |
-    npm ci
-    npx cypress run --e2e --browser chrome
-  displayName: 'npm install and build'
+- job: RunNpmCi
+  displayName: 'npm ci'
+  dependsOn: InstallNode
+  steps:
+    - script: |
+        npm ci
+        npx cypress run --e2e --browser chrome
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'cypress/reports/html'
-    ArtifactName: 'CypressHTMLReports'
-    publishLocation: 'Container'
+- job: GenerateReport
+  displayName: 'Generate Report'
+  dependsOn: RunNpmCi
+  steps:
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: 'cypress/reports/html'
+        ArtifactName: 'CypressHTMLReports'
+        publishLocation: 'Container'
