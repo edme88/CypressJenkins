@@ -26,7 +26,6 @@ parameters:
   displayName: Tags
   type: string
   default: "@regresion"
-  description: Posibles valores @pasara, @fallara, @regresion, @primero
 
 trigger:
 - none
