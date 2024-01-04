@@ -32,8 +32,6 @@ jobs:
     vmImage: ${{ parameters.image }}
 - job: InstallNode
   displayName: 'Install Node.js'
-  pool:
-    vmImage: $(vmImage)
   steps:
   - task: NodeTool@0
     inputs:
