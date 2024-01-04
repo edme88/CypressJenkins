@@ -50,10 +50,6 @@ jobs:
         npx cypress run --e2e --browser ${{ parameters.navegador }} --env grepTags=${{ parameters.tags }}
         ls -R $(Build.ArtifactStagingDirectory)
 
-    - store_artifacts:
-        name: Store basic Report
-        path: reports/index.html
-    
-    - store_test_results:
-        path: reports
+    - publish: $(System.DefaultWorkingDirectory)/cypress/reports/html
+      artifact: resultadosHtml
 
