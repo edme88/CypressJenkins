@@ -49,12 +49,15 @@ jobs:
         npm ci
         npx cypress run --e2e --browser ${{ parameters.navegador }} --env grepTags=${{ parameters.tags }}
 
-- job: GenerateReport
-  displayName: 'Generate Report'
-  dependsOn: RunNpmCi
-  steps:
-    - task: PublishBuildArtifacts@1
+    - task: CopyFiles@2
+      displayName: 'Copy reports to artifacts'
       inputs:
-        PathtoPublish: 'cypress/reports/html'
-        ArtifactName: 'CypressHTMLReports'
-        publishLocation: 'Container'
+        SourceFolder: 'cypress/reports'
+        Contents: '**/*'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish reports'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'CypressReports'
