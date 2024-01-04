@@ -16,13 +16,15 @@ parameters:
 trigger:
 - none
 
+variables:
+- name: vmImage
+  value: ${{ parameters.image }}
+
 jobs:
-- job: vm
-  displayName: vm
-  pool: 
-    vmImage: ${{ parameters.image }}
 - job: InstallNode
   displayName: 'Install Node.js'
+  pool:
+    vmImage: $(vmImage)
   steps:
   - task: NodeTool@0
     inputs:
