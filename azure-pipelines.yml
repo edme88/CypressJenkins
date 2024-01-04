@@ -3,49 +3,25 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-parameters:
-- name: image
-  displayName: Pool Image
-  type: string
-  default: windows-latest
-  values:
-  - windows-latest
-  - ubuntu-latest
-  - macOS-latest
-
 trigger:
 - none
 
-variables:
-- name: vmImage
-  value: ${{ parameters.image }}
+pool:
+  vmImage: windows-latest
 
-jobs:
-- job: InstallNode
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.16.0'
   displayName: 'Install Node.js'
-  pool:
-    vmImage: $(vmImage)
-  steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '18.16.0'
 
-- job: RunNpmCi
-  displayName: 'npm ci'
-  pool:
-    vmImage: $(vmImage)
-  dependsOn: InstallNode
-  steps:
-  - script: |
-      npm ci
-    displayName: 'npm ci'
+- script: |
+    npm ci
+    npx cypress run --e2e --browser chrome
+  displayName: 'npm install and build'
 
-- job: RunTest
-  displayName: 'npm run test'
-  pool:
-    vmImage: $(vmImage)
-  dependsOn: RunNpmCi
-  steps:
-  - script: |
-      npm run test
-    displayName: 'npm run test'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'cypress/reports/html'
+    ArtifactName: 'CypressHTMLReports'
+    publishLocation: 'Container'
