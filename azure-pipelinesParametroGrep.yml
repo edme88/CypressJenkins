@@ -48,8 +48,8 @@ jobs:
     - script: |
         npm ci
         npx cypress run --e2e --browser ${{ parameters.navegador }} --env grepTags=${{ parameters.tags }}
-        ls -R "$(Build.SourcesDirectory)/cypress/reports"
+        ls -R "$(Build.SourcesDirectory)"
 
-    - publish: $(System.SourcesDirectory)/cypress/reports/html
+    - publish: $(System.SourcesDirectory)/reports
       artifact: resultadosHtml
 
