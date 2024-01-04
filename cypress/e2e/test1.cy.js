@@ -1,14 +1,14 @@
-describe("template spec", () => {
-  it("passes", () => {
-    cy.visit("https://www.darwoft.com/");
+describe("Tests de Prueba para Jenkins", { tags: "@regresion" }, () => {
+  it("Test que PASA", { tags: ["@primero", "@pasara"] }, () => {
+    cy.visit("https://example.cypress.io");
   });
 
-  it("fails", () => {
-    cy.visit("https://www.darwoft.com/");
-    cy.get("h1").should("have.text", "hola mundo!");
+  it("Test que FALLA", { tags: "@fallara" }, () => {
+    cy.visit("https://example.cypress.io");
+    cy.get("h1").should("have.text", "Hola Mundo!");
   });
 
-  it.skip("skip", () => {
-    cy.visit("https://www.darwoft.com/");
+  it.skip("Test que NO SE EJECUTA", () => {
+    cy.visit("https://example.cypress.io");
   });
 });
