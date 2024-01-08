@@ -12,10 +12,12 @@ describe("Tests de Prueba para Jenkins", { tags: "@regresion" }, () => {
     cy.visit("https://example.cypress.io");
   });
 
-  it.only("imprimir variable", () => {
-    cy.log(Cypress.env()["user_TEST"]);
-    cy.log(Cypress.env()["pass_TEST"]);
-    //cy.log(%user_TEST%);
-    //cy.log(%pass_TEST%);
+  it("imprimir variable", () => {
+    const user = Cypress.env()["user_TEST"];
+    const pass = Cypress.env()["pass_TEST"];
+    cy.log(user);
+    cy.log(pass);
+    console.log(user);
+    console.log(pass);
   });
 });
