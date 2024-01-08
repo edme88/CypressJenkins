@@ -1,0 +1,20 @@
+name: run schedule, todas las noches a las 22hs
+
+on:
+  schedule:
+    - cron: '0 22 * * *'
+
+jobs:
+  run-tests-prueba:
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: install npm
+        run: npm ci
+        
+      - name: run tests de cypress
+        run: npx cypress run --e2e --browser chrome
+    
