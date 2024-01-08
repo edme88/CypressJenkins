@@ -12,10 +12,10 @@ describe("Tests de Prueba para Jenkins", { tags: "@regresion" }, () => {
     cy.visit("https://example.cypress.io");
   });
 
-  it("imprimir variable", () => {
+  it.only("imprimir variable", () => {
     //cy.log(Cypress.env()["user_TEST"]);
     //cy.log(Cypress.env()["pass_TEST"]);
-    cy.log($("user_TEST"));
-    cy.log($("pass_TEST"));
+    cy.log(%user_TEST%);
+    cy.log(%pass_TEST%);
   });
 });
