@@ -1,0 +1,19 @@
+name: build_by_api
+run-name: Build by API from user @${{ github.actor }}
+
+on:
+  repository_dispatch:
+    types: api-build
+
+jobs:
+  build:
+    name: Build Job
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+
+      - name: install npm
+        run: npm ci
+        
+      - name: run tests de cypress
+        run: npx cypress run --e2e --browser chrome
