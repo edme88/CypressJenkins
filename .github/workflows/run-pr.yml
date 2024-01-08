@@ -10,5 +10,5 @@ jobs:
     steps:
     - uses: seferov/pr-lint-action@v1.2.0
       with:
-        title-regex: ^\[JIRA-\d*\]\ 
+        title-regex: '^\JIRA-\d+\s.+'
         error-message: 'Add ticket ID to your title e.g. "JIRA-1"'
