@@ -1,8 +1,9 @@
 name: complete e2e
-run-name: Build, Deploy, Test - from user @${{ github.actor }}
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      'main'
 
 jobs:
   build:
