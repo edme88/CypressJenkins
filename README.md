@@ -1,5 +1,7 @@
 # CypressJenkins
 
+[![complete e2e](https://github.com/edme88/CypressJenkins/actions/workflows/e2e-pipeline.yml/badge.svg)](https://github.com/edme88/CypressJenkins/actions/workflows/e2e-pipeline.yml)
+
 | Itema                      | Jenkins   | Azure         | GitHub Actions |
 | -------------------------- | --------- | ------------- | -------------- |
 | Pipeline básico            | x         | x             |                |
