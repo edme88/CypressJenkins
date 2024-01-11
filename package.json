@@ -7,7 +7,7 @@
     "test": "npx cypress run --e2e --browser chrome",
     "test2": "npx cypress run --e2e --browser firefox --env grepTags=\"@pasara\"",
     "generate:report": "node reportTxt.js",
-    "unit:test": "npx jest jestUnitTests/asyncExample.test.js"
+    "unit:test": "npx jest tests/asyncExample.test.js"
   },
   "repository": {
     "type": "git",
