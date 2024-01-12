@@ -58,6 +58,7 @@ jobs:
         - name: "cleanup destination"
           uses: appleboy/ssh-action@master
           with: 
+            host: ${{ secrets.HOST }}
             user: ${{ vars.USER_TEST }}
             pass: ${{ secrets.PASS_TEST }}
             run: npx cypress run --e2e --browser chrome
