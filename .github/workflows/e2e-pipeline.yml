@@ -60,6 +60,7 @@ jobs:
             echo "repository variable: $USER_TEST"
           env:
             USER_VAR: ${{ vars.USER_TEST }}
+            PASS_SECRET: ${{ secrets.PASS_TEST }}
   
   e2e:
       needs: [cleanup]
