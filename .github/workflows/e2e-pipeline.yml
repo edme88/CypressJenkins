@@ -56,16 +56,9 @@ jobs:
   
       steps:
         - name: "cleanup destination with ${{ vars.USER_TEST }}"
-          uses: cleanup:
-    needs: [build]
-    runs-on: ubuntu-latest
-    environment: Testing
-
-    steps:
-      - name: "cleanup destination with ${{ vars.USER_TEST }}"
-        uses: appleboy/ssh-action@master
-        with: 
-          user: ${{ vars.USER_TEST }}
-          pass: ${{ secrets.PASS_TEST }}
-          run: npx cypress run --e2e --browser chrome
+          uses: appleboy/ssh-action@master
+          with: 
+            user: ${{ vars.USER_TEST }}
+            pass: ${{ secrets.PASS_TEST }}
+            run: npx cypress run --e2e --browser chrome
             
