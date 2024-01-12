@@ -56,10 +56,5 @@ jobs:
   
       steps:
         - name: "cleanup destination"
-          with: 
-            script: 
-              echo ${{ secrets.HOST }}
-              echo ${{ vars.USER_TEST }}
-              echo ${{ secrets.PASS_TEST }}
-            run: npx cypress run --e2e --browser chrome
+          run: npx cypress run --e2e --browser chrome
             
