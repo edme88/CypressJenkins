@@ -55,7 +55,7 @@ jobs:
       environment: Testing
   
       steps:
-        - name: "cleanup destination with ${{ vars.USER_TEST }}"
+        - name: "cleanup destination"
           uses: appleboy/ssh-action@master
           with: 
             user: ${{ vars.USER_TEST }}
