@@ -56,9 +56,17 @@ jobs:
   
       steps:
         - name: "cleanup destination"
+          run: |
+            echo "repository variable: $USER_TEST"
+          env:
+            USER_VAR: ${{ vars.USER_TEST }}
+  
+  e2e:
+      needs: [cleanup]
+      runs-on: ubuntu-latest
+      environment: Testing
+  
+      steps:
+        - name: "run e2e"
           run: npx cypress run --e2e --browser chrome
-          shell: 
-            echo ${{ secrets.HOST }}
-            echo ${{ vars.USER_TEST }}
-            echo ${{ secrets.PASS_TEST }}
-            
+
