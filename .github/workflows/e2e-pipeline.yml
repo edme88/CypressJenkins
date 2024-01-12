@@ -48,3 +48,24 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language ${{matrix.language}}"
+
+  cleanup:
+      needs: [build]
+      runs-on: ubuntu-latest
+      environment: Testing
+  
+      steps:
+        - name: "cleanup destination with ${{ vars.USER_TEST }}"
+          uses: cleanup:
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment: Testing
+
+    steps:
+      - name: "cleanup destination with ${{ vars.USER_TEST }}"
+        uses: appleboy/ssh-action@master
+        with: 
+          user: ${{ vars.USER_TEST }}
+          pass: ${{ secrets.PASS_TEST }}
+          run: npx cypress run --e2e --browser chrome
+            
