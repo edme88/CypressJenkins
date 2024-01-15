@@ -79,6 +79,6 @@ jobs:
       
         - uses: actions/download-artifact@v4.0.0
           with:
-            name: my_new_report.html
+            name: ./reports/my_new_report.html
             path: ./reports/my_new_report.html
 
